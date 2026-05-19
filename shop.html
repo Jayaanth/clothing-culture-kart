@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Shop oversized tees, graphic tees, hoodies, and streetwear accessories from Clothing Culture Kart.">
+    <title>Shop | Clothing Culture Kart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;700&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-lockup" href="index.html"><span class="brand-mark">CCK</span><span class="brand-name">Clothing Culture <small>Kart Streetwear</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a><a href="shop.html" aria-current="page">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions"><a class="icon-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" aria-label="Open Instagram">IG</a><button class="cart-button" type="button" data-open-cart><span class="cart-label">Cart</span><span class="cart-count" data-cart-count>0</span></button></div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <span class="eyebrow">Shop the drop</span>
+        <h1>Streetwear Catalog</h1>
+        <p class="section-copy">Oversized tees, graphic tees, hoodies, and accessories with COD support, wishlist saves, product zoom, and quick buy actions.</p>
+      </section>
+
+      <section class="section">
+        <div class="shop-layout">
+          <aside class="filter-panel" aria-label="Product filters">
+            <span class="section-kicker">Filters</span>
+            <div class="filter-group">
+              <h3>Category</h3>
+              <div class="segmented" data-category-filter>
+                <button class="is-active" type="button" data-value="All">All</button>
+                <button type="button" data-value="Oversized Tees">Oversized</button>
+                <button type="button" data-value="Graphic Tees">Graphic</button>
+                <button type="button" data-value="Hoodies">Hoodies</button>
+                <button type="button" data-value="Streetwear Accessories">Accessories</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <h3>Price</h3>
+              <label class="range-row">Max <strong data-price-value>₹2,000</strong><input type="range" min="399" max="2000" value="2000" step="50" data-price-filter></label>
+            </div>
+            <div class="filter-group">
+              <h3>Size</h3>
+              <div class="segmented" aria-label="Size filter preview">
+                <button type="button">S</button><button type="button">M</button><button type="button">L</button><button type="button">XL</button><button type="button">XXL</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <h3>Checkout</h3>
+              <p class="section-copy">Fast WhatsApp ordering now. Razorpay integration slot is ready for custom backend checkout.</p>
+            </div>
+          </aside>
+
+          <div>
+            <div class="shop-toolbar">
+              <strong data-result-count>8 styles</strong>
+              <label class="select-row">Sort
+                <select data-sort>
+                  <option value="featured">Featured</option>
+                  <option value="low">Price: Low to High</option>
+                  <option value="high">Price: High to Low</option>
+                  <option value="stock">Only Few Left</option>
+                </select>
+              </label>
+            </div>
+            <div class="product-grid" data-shop-grid></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="section-kicker">Lookbook</span>
+        <h2 class="section-title">Drop culture, not template culture.</h2>
+        <div class="lookbook-grid">
+          <div class="lookbook-tile"><img src="assets/lookbook-1.svg" alt="Drop night lookbook"><b>Drop Night</b></div>
+          <div class="lookbook-tile"><img src="assets/lookbook-2.svg" alt="Mysuru streetwear lookbook"><b>Mysuru</b></div>
+          <div class="lookbook-tile"><img src="assets/lookbook-3.svg" alt="Local culture lookbook"><b>Local</b></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><p>© 2026 Clothing Culture Kart.</p><div class="button-row"><a class="ghost-button" href="contact.html">WhatsApp</a><a class="ghost-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer">Instagram</a></div></footer>
+
+    <div class="cart-drawer" data-cart-drawer><div class="drawer-backdrop"></div><aside class="cart-panel"><div class="cart-head"><h2>Cart</h2><button class="icon-button" type="button" data-close-cart aria-label="Close cart">×</button></div><div class="cart-items" data-cart-items></div><div class="cart-foot"><div class="product-meta"><strong>Total</strong><strong data-cart-total>₹0</strong></div><a class="solid-button" href="contact.html">Checkout on WhatsApp</a><small>Razorpay-ready checkout can be connected when products go live.</small></div></aside></div>
+    <div class="modal" data-modal><div class="modal-backdrop"></div><section class="modal-panel"><div class="modal-head"><h2>Product Zoom</h2><button class="icon-button" type="button" data-close-modal aria-label="Close preview">×</button></div><div class="modal-body" data-modal-body></div></section></div>
+    <div class="toast" data-toast></div>
+    <script src="script.js"></script>
+  </body>
+</html>

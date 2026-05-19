@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <rect width="720" height="720" fill="#170d0c"/>
+  <path d="M168 168 275 108h170l107 60 70 111-98 73-35-45v265H231V307l-35 45-98-73 70-111Z" fill="#111" stroke="#f1e7d0" stroke-opacity=".22" stroke-width="6"/>
+  <rect x="268" y="302" width="184" height="142" fill="#f1e7d0"/>
+  <text x="360" y="370" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="44" fill="#4a1014">MYS</text>
+  <text x="360" y="414" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="34" fill="#d95f25">SIGNAL</text>
+</svg>

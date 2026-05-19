@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <rect width="720" height="720" fill="#0a0707"/>
+  <path d="M250 160c24-50 196-50 220 0l97 87 61 298H92l61-298 97-87Z" fill="#4a1014" stroke="#d95f25" stroke-width="6"/>
+  <path d="M262 170c26 68 170 68 196 0 7 82-23 136-98 136s-105-54-98-136Z" fill="#160a09"/>
+  <text x="360" y="350" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="48" fill="#f1e7d0">UNDER</text>
+  <text x="360" y="405" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="48" fill="#d95f25">GROUND</text>
+</svg>

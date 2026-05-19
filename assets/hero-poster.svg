@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1180">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#2a0c0d"/>
+      <stop offset=".48" stop-color="#7b1e19"/>
+      <stop offset="1" stop-color="#0a0707"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0v42" fill="none" stroke="#f1e7d0" stroke-opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="1180" fill="url(#g)"/>
+  <rect width="900" height="1180" fill="url(#grid)"/>
+  <path d="M95 964 226 242h318l105 722H95Z" fill="#111" stroke="#f1e7d0" stroke-opacity=".2" stroke-width="5"/>
+  <path d="M270 250c28 56 204 56 232 0" fill="none" stroke="#d95f25" stroke-width="22"/>
+  <path d="M215 410h360l-35 235H250Z" fill="#f1e7d0"/>
+  <text x="450" y="545" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="74" fill="#0a0707">CCK</text>
+  <text x="450" y="625" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="36" fill="#7b1e19">STREET LAB</text>
+  <path d="M628 264h125l76 706H678Z" fill="#d95f25" opacity=".88"/>
+  <path d="M692 343h65l42 410h-80Z" fill="#0a0707" opacity=".72"/>
+  <text x="84" y="122" font-family="Arial Black, Impact, sans-serif" font-size="84" fill="#f1e7d0">LOCAL</text>
+  <text x="83" y="209" font-family="Arial Black, Impact, sans-serif" font-size="84" fill="#d95f25">DROP</text>
+  <text x="85" y="1080" font-family="Arial Black, Impact, sans-serif" font-size="56" fill="#f1e7d0">MYSURU / ENGINEER BUILT</text>
+</svg>

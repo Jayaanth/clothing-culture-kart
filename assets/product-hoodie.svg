@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <rect width="720" height="720" fill="#130909"/>
+  <path d="M250 160c24-50 196-50 220 0l97 87 61 298H92l61-298 97-87Z" fill="#0f0f0f" stroke="#f1e7d0" stroke-opacity=".2" stroke-width="6"/>
+  <path d="M262 170c26 68 170 68 196 0 7 82-23 136-98 136s-105-54-98-136Z" fill="#4a1014"/>
+  <rect x="268" y="356" width="184" height="74" rx="28" fill="#d95f25"/>
+  <text x="360" y="298" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="42" fill="#f1e7d0">ENGINEER</text>
+  <text x="360" y="345" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="38" fill="#d95f25">BUILT</text>
+</svg>

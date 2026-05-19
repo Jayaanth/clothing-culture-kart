@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <rect width="720" height="720" fill="#0b0808"/>
+  <path d="M168 168 275 108h170l107 60 70 111-98 73-35-45v265H231V307l-35 45-98-73 70-111Z" fill="#151515" stroke="#7b1e19" stroke-width="8"/>
+  <path d="M272 322h176v94H272z" fill="none" stroke="#d95f25" stroke-width="10"/>
+  <text x="360" y="384" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="44" fill="#f1e7d0">NIGHT</text>
+</svg>

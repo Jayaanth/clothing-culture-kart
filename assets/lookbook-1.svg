@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <rect width="900" height="900" fill="#140909"/>
+  <path d="M0 650h900v250H0z" fill="#0a0707"/>
+  <path d="M315 198h270l83 517H232l83-517Z" fill="#111" stroke="#d95f25" stroke-width="9"/>
+  <text x="450" y="452" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="92" fill="#f1e7d0">DROP</text>
+  <text x="450" y="545" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="72" fill="#d95f25">NIGHT</text>
+</svg>

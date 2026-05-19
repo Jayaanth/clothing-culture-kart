@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <rect width="720" height="720" fill="#170d0c"/>
+  <path d="M154 405c34-137 151-213 301-180 88 19 134 88 144 174-139 21-284 23-445 6Z" fill="#111" stroke="#f1e7d0" stroke-opacity=".25" stroke-width="6"/>
+  <path d="M426 397c110-14 179-3 218 45 18 21 7 54-21 61-68 17-144 5-234-35Z" fill="#d95f25"/>
+  <text x="360" y="360" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="72" fill="#f1e7d0">CCK</text>
+</svg>

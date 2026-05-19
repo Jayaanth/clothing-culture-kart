@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <rect width="720" height="720" fill="#170d0c"/>
+  <path d="M220 235h280l46 360H174l46-360Z" fill="#f1e7d0" stroke="#d95f25" stroke-width="6"/>
+  <path d="M284 252c-4-92 156-92 152 0" fill="none" stroke="#0a0707" stroke-width="20"/>
+  <text x="360" y="430" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="78" fill="#4a1014">LAB</text>
+  <text x="360" y="488" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="34" fill="#d95f25">CANVAS TOTE</text>
+</svg>

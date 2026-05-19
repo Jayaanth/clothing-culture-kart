@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#0a0707"/>
+      <stop offset=".52" stop-color="#4a1014"/>
+      <stop offset="1" stop-color="#1b0c0b"/>
+    </linearGradient>
+    <pattern id="grain" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="3" r="1" fill="#f1e7d0" opacity=".14"/>
+      <circle cx="11" cy="8" r="1" fill="#d95f25" opacity=".18"/>
+      <circle cx="7" cy="14" r="1" fill="#f1e7d0" opacity=".1"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="700" fill="url(#bg)"/>
+  <rect width="1400" height="700" fill="url(#grain)"/>
+  <path d="M0 530h1400v170H0z" fill="#080606"/>
+  <path d="M880 475c90-170 235-235 428-202 54 10 66 82 15 105-102 45-158 92-210 169H877z" fill="#d95f25" opacity=".62"/>
+  <circle cx="1042" cy="558" r="72" fill="#0a0707" stroke="#f1e7d0" stroke-width="12"/>
+  <circle cx="1258" cy="558" r="72" fill="#0a0707" stroke="#f1e7d0" stroke-width="12"/>
+  <text x="72" y="210" font-family="Arial Black, Impact, sans-serif" font-size="134" fill="#f1e7d0">MORE THAN</text>
+  <text x="72" y="345" font-family="Arial Black, Impact, sans-serif" font-size="134" fill="#d95f25">CLOTHING</text>
+  <text x="76" y="440" font-family="Arial, sans-serif" font-size="36" fill="#b99f88">HUSTLE / DESIGN / STREET IDENTITY</text>
+</svg>
