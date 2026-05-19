@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Admin portal for Clothing Culture Kart storefront edits.">
+    <title>Admin Portal | Clothing Culture Kart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;700&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-lockup" href="index.html" aria-label="Clothing Culture Kart home">
+        <span class="brand-mark">CCK</span>
+        <span class="brand-name">Clothing Culture <small>Kart Streetwear</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="admin.html" aria-current="page">Admin</a>
+      </nav>
+      <div class="header-actions">
+        <a class="icon-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" aria-label="Open Instagram">IG</a>
+        <a class="cart-button" href="shop.html">View Site</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <span class="eyebrow">Store control room</span>
+        <h1>Admin Portal</h1>
+        <p class="section-copy">Edit logo, brand copy, links, products, pricing, stock and images. Changes are saved in this browser and reflected across the storefront instantly.</p>
+      </section>
+
+      <div class="admin-shell">
+        <aside class="admin-sidebar">
+          <span class="section-kicker">Tools</span>
+          <nav aria-label="Admin sections">
+            <a href="#brand">Brand</a>
+            <a href="#products">Products</a>
+            <a href="#backup">Backup</a>
+          </nav>
+          <p class="section-copy">For public live editing across devices, connect this same portal to Firebase or Supabase later.</p>
+        </aside>
+
+        <div class="admin-main">
+          <section class="admin-panel" id="brand">
+            <h2>Brand Setup</h2>
+            <form data-brand-form>
+              <div class="admin-form-grid">
+                <label class="admin-field">Brand name<input name="brandName" required></label>
+                <label class="admin-field">Small label<input name="brandSmall" required></label>
+                <label class="admin-field">Logo text<input name="brandMark" maxlength="8" required></label>
+                <label class="admin-field">Hero tagline<input name="tagline" required></label>
+                <label class="admin-field">Hero first word<input name="heroTitle" required></label>
+                <label class="admin-field">Hero outline word<input name="heroOutline" required></label>
+                <label class="admin-field">Hero kicker<input name="heroKicker" required></label>
+                <label class="admin-field">Instagram URL<input name="instagram" type="url" required></label>
+                <label class="admin-field">WhatsApp URL<input name="whatsapp" type="url" required></label>
+                <label class="admin-field full">Upload logo image<input name="logoFile" type="file" accept="image/*"></label>
+              </div>
+              <div class="admin-actions">
+                <button class="solid-button" type="submit">Save Brand</button>
+                <button class="ghost-button" type="button" data-clear-logo>Clear Logo Image</button>
+                <div class="admin-preview is-logo" data-logo-preview></div>
+              </div>
+            </form>
+          </section>
+
+          <section class="admin-panel" id="products">
+            <div class="split-heading">
+              <div>
+                <span class="section-kicker">Catalog</span>
+                <h2>Products</h2>
+              </div>
+              <button class="solid-button" type="button" data-new-product>New Product</button>
+            </div>
+
+            <form data-product-form>
+              <input type="hidden" name="id">
+              <div class="admin-form-grid">
+                <label class="admin-field">Product name<input name="name" required></label>
+                <label class="admin-field">Category
+                  <select name="category" required>
+                    <option>Oversized Tees</option>
+                    <option>Graphic Tees</option>
+                    <option>Hoodies</option>
+                    <option>Streetwear Accessories</option>
+                  </select>
+                </label>
+                <label class="admin-field">Price<input name="price" type="number" min="0" step="1" required></label>
+                <label class="admin-field">Stock<input name="stock" type="number" min="0" step="1" required></label>
+                <label class="admin-field">Tag<input name="tag" required></label>
+                <label class="admin-field">Sizes, comma separated<input name="sizes" required></label>
+                <label class="admin-field full">Product image<input name="imageFile" type="file" accept="image/*"></label>
+                <label class="admin-field full">Or image path / URL<input name="img" required></label>
+              </div>
+              <div class="admin-actions">
+                <button class="solid-button" type="submit">Save Product</button>
+                <button class="ghost-button" type="button" data-reset-form>Clear Form</button>
+                <div class="admin-preview" data-product-preview></div>
+              </div>
+            </form>
+
+            <div class="admin-product-list" data-admin-products style="margin-top: 1rem;"></div>
+          </section>
+
+          <section class="admin-panel" id="backup">
+            <h2>Backup and Reset</h2>
+            <p class="section-copy">Export your current settings before major edits. Import restores products, logo, links and brand text on this browser.</p>
+            <div class="admin-actions">
+              <button class="solid-button" type="button" data-export>Export JSON</button>
+              <label class="ghost-button">Import JSON<input data-import type="file" accept="application/json" hidden></label>
+              <button class="ghost-button admin-danger" type="button" data-reset-store>Reset to Original</button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div class="toast" data-toast></div>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

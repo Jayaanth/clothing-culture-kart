@@ -101,6 +101,18 @@ textarea {
   box-shadow: 5px 5px 0 var(--maroon-2);
 }
 
+.brand-mark.has-logo-image {
+  overflow: hidden;
+  padding: 0;
+  background: #100908;
+}
+
+.brand-mark.has-logo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .brand-name {
   display: grid;
   line-height: 0.9;
@@ -969,6 +981,141 @@ textarea {
   color: var(--muted);
 }
 
+.admin-shell {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 4vw, 4rem) clamp(4rem, 8vw, 6rem);
+}
+
+.admin-sidebar,
+.admin-panel,
+.admin-preview,
+.admin-product-row {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(17, 10, 10, 0.82);
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 6rem;
+  align-self: start;
+  padding: 1rem;
+}
+
+.admin-sidebar nav {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.admin-sidebar a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.65rem 0.8rem;
+  color: var(--muted);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-sidebar a:hover {
+  border-color: var(--orange);
+  color: var(--cream);
+}
+
+.admin-main {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-panel {
+  padding: 1rem;
+}
+
+.admin-panel h2 {
+  margin: 0 0 1rem;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.admin-form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.admin-field {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.admin-product-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-product-row {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+.admin-product-row img,
+.admin-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #170d0c;
+}
+
+.admin-product-row img {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid var(--line);
+}
+
+.admin-product-row h3 {
+  margin: 0;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+.admin-preview {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  overflow: hidden;
+}
+
+.admin-preview.is-logo {
+  width: 8rem;
+  height: 8rem;
+}
+
+.admin-danger {
+  border-color: rgba(255, 138, 53, 0.5);
+  color: var(--orange-2);
+}
+
 @media (max-width: 1080px) {
   .product-grid,
   .contact-grid,
@@ -995,6 +1142,14 @@ textarea {
   }
 
   .filter-panel {
+    position: static;
+  }
+
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
     position: static;
   }
 }
@@ -1081,8 +1236,21 @@ textarea {
   }
 
   .contact-form,
+  .admin-form-grid,
   .modal-body {
     grid-template-columns: 1fr;
+  }
+
+  .admin-form-grid .full {
+    grid-column: auto;
+  }
+
+  .admin-product-row {
+    grid-template-columns: 4.5rem 1fr;
+  }
+
+  .admin-product-row .admin-actions {
+    grid-column: 1 / -1;
   }
 
   .modal-body img {

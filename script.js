@@ -1,4 +1,4 @@
-const products = [
+const defaultProducts = [
   {
     id: "mysuru-oversized",
     name: "Mysuru Signal Oversized Tee",
@@ -87,8 +87,53 @@ const currency = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0
 });
 
+let products = JSON.parse(localStorage.getItem("cck-products") || "null") || defaultProducts;
+const siteSettings = JSON.parse(localStorage.getItem("cck-settings") || "null") || {};
 const cart = JSON.parse(localStorage.getItem("cck-cart") || "[]");
 const wishlist = new Set(JSON.parse(localStorage.getItem("cck-wishlist") || "[]"));
+
+function applySiteSettings() {
+  const defaults = {
+    brandName: "Clothing Culture",
+    brandSmall: "Kart Streetwear",
+    brandMark: "CCK",
+    tagline: "Built by Engineers. Styled for Streets.",
+    instagram: "https://www.instagram.com/clothingculturecart/",
+    whatsapp: "https://wa.me/",
+    heroTitle: "Clothing",
+    heroOutline: "Culture",
+    heroKicker: "Mysuru Independent Streetwear"
+  };
+  const settings = { ...defaults, ...siteSettings };
+
+  document.querySelectorAll(".brand-mark").forEach((node) => {
+    if (settings.logoImage) {
+      node.innerHTML = `<img src="${settings.logoImage}" alt="${settings.brandMark} logo">`;
+      node.classList.add("has-logo-image");
+    } else {
+      node.textContent = settings.brandMark;
+      node.classList.remove("has-logo-image");
+    }
+  });
+  document.querySelectorAll(".brand-name").forEach((node) => {
+    node.innerHTML = `${settings.brandName} <small>${settings.brandSmall}</small>`;
+  });
+  document.querySelectorAll("[data-site-tagline]").forEach((node) => {
+    node.textContent = settings.tagline;
+  });
+  document.querySelectorAll("[data-hero-kicker]").forEach((node) => {
+    node.textContent = settings.heroKicker;
+  });
+  document.querySelectorAll("[data-hero-title]").forEach((node) => {
+    node.innerHTML = `${settings.heroTitle} <span>${settings.heroOutline}</span>`;
+  });
+  document.querySelectorAll('a[href*="instagram.com/clothingculturecart"]').forEach((node) => {
+    node.href = settings.instagram;
+  });
+  document.querySelectorAll('a[href="https://wa.me/"]').forEach((node) => {
+    node.href = settings.whatsapp;
+  });
+}
 
 function saveState() {
   localStorage.setItem("cck-cart", JSON.stringify(cart));
@@ -138,7 +183,7 @@ function createProductCard(product) {
 function renderProducts(targetSelector, list = products.slice(0, 4)) {
   const target = document.querySelector(targetSelector);
   if (!target) return;
-  target.innerHTML = list.map(createProductCard).join("");
+  target.innerHTML = list.filter(Boolean).map(createProductCard).join("");
 }
 
 function updateCart() {
@@ -158,6 +203,7 @@ function updateCart() {
 
   cartItems.innerHTML = cart.map((item) => {
     const product = products.find((entry) => entry.id === item.id);
+    if (!product) return "";
     return `
       <div class="cart-item">
         <img src="${product.img}" alt="${product.name}">
@@ -172,6 +218,7 @@ function updateCart() {
 
   const total = cart.reduce((sum, item) => {
     const product = products.find((entry) => entry.id === item.id);
+    if (!product) return sum;
     return sum + product.price * item.qty;
   }, 0);
   cartTotal.textContent = currency.format(total);
@@ -329,8 +376,9 @@ document.addEventListener("submit", (event) => {
   }
 });
 
+applySiteSettings();
 renderProducts("[data-featured-grid]", products.slice(0, 4));
-renderProducts("[data-best-grid]", [products[1], products[2], products[0], products[5]]);
+renderProducts("[data-best-grid]", [products[1], products[2], products[0], products[5]].filter(Boolean).length ? [products[1], products[2], products[0], products[5]].filter(Boolean) : products.slice(0, 4));
 renderProducts("[data-shop-grid]", products);
 applyFilters();
 updateCart();
