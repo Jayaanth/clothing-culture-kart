@@ -56,6 +56,7 @@
           <span class="section-kicker">Tools</span>
           <nav aria-label="Admin sections">
             <a href="#brand">Brand</a>
+            <a href="#location">Location</a>
             <a href="#products">Products</a>
             <a href="#backup">Backup</a>
           </nav>
@@ -82,6 +83,22 @@
                 <button class="solid-button" type="submit">Save Brand</button>
                 <button class="ghost-button" type="button" data-clear-logo>Clear Logo Image</button>
                 <div class="admin-preview is-logo" data-logo-preview></div>
+              </div>
+            </form>
+          </section>
+
+          <section class="admin-panel" id="location">
+            <h2>Location Setup</h2>
+            <form data-location-form>
+              <div class="admin-form-grid">
+                <label class="admin-field">Location name<input name="locationName" placeholder="Mysuru, Karnataka" required></label>
+                <label class="admin-field">Google Maps search query<input name="mapQuery" placeholder="Clothing Culture Kart Mysuru" required></label>
+                <label class="admin-field full">Pickup / location note<textarea name="locationNote" rows="3" required></textarea></label>
+                <label class="admin-field full">Timings<textarea name="timings" rows="3" required></textarea></label>
+              </div>
+              <div class="admin-actions">
+                <button class="solid-button" type="submit">Save Location</button>
+                <a class="ghost-button" href="contact.html#map" target="_blank">Preview Map</a>
               </div>
             </form>
           </section>

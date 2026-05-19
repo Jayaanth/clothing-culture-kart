@@ -6,6 +6,7 @@ let pendingLogoImage = adminSettings.logoImage || "";
 
 const brandForm = document.querySelector("[data-brand-form]");
 const productForm = document.querySelector("[data-product-form]");
+const locationForm = document.querySelector("[data-location-form]");
 const productList = document.querySelector("[data-admin-products]");
 const productPreview = document.querySelector("[data-product-preview]");
 const logoPreview = document.querySelector("[data-logo-preview]");
@@ -64,6 +65,13 @@ function fillBrandForm() {
     if (field && field.type !== "file") field.value = value || "";
   });
   renderLogoPreview();
+}
+
+function fillLocationForm() {
+  ["locationName", "mapQuery", "locationNote", "timings"].forEach((key) => {
+    const field = locationForm.elements[key];
+    if (field) field.value = adminSettings[key] || defaultSettings[key] || "";
+  });
 }
 
 function renderLogoPreview() {
@@ -142,6 +150,20 @@ brandForm.addEventListener("submit", (event) => {
   };
   persistAdmin();
   window.location.reload();
+});
+
+locationForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const data = new FormData(locationForm);
+  adminSettings = {
+    ...adminSettings,
+    locationName: data.get("locationName").trim(),
+    mapQuery: data.get("mapQuery").trim(),
+    locationNote: data.get("locationNote").trim(),
+    timings: data.get("timings").trim()
+  };
+  persistAdmin();
+  showToast("Location saved");
 });
 
 productForm.addEventListener("change", async (event) => {
@@ -223,5 +245,6 @@ document.querySelector("[data-import]").addEventListener("change", async (event)
 });
 
 fillBrandForm();
+fillLocationForm();
 fillProductForm(adminProducts[0]);
 renderProductList();

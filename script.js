@@ -96,6 +96,10 @@ const defaultSettings = {
   tagline: "Built by Engineers. Styled for Streets.",
   instagram: "https://www.instagram.com/clothingculturecart/",
   whatsappNumber: "",
+  locationName: "Mysuru, Karnataka",
+  locationNote: "Exact pickup point can be shared on WhatsApp during order confirmation.",
+  mapQuery: "Mysuru, Karnataka",
+  timings: "Mon-Sat: 11 AM - 8 PM. Sunday: Drop and pickup slots only.",
   heroTitle: "Clothing",
   heroOutline: "Culture",
   heroKicker: "Mysuru Independent Streetwear",
@@ -120,6 +124,10 @@ function getWhatsAppLink(product = null) {
   const productText = product ? `Hi CCK, I want to order/check availability for ${product.name}.` : "Hi CCK, I want to order from Clothing Culture Kart.";
   const text = encodeURIComponent(productText);
   return number ? `https://wa.me/${number}?text=${text}` : `https://wa.me/?text=${text}`;
+}
+
+function getMapEmbedUrl() {
+  return `https://www.google.com/maps?q=${encodeURIComponent(siteSettings.mapQuery || siteSettings.locationName)}&output=embed`;
 }
 
 function showToast(message) {
@@ -161,6 +169,19 @@ function applySiteSettings() {
   });
   document.querySelectorAll("[data-whatsapp-number]").forEach((node) => {
     node.textContent = siteSettings.whatsappNumber || "Add WhatsApp number in admin";
+  });
+  document.querySelectorAll("[data-location-name]").forEach((node) => {
+    node.textContent = siteSettings.locationName;
+  });
+  document.querySelectorAll("[data-location-note]").forEach((node) => {
+    node.textContent = siteSettings.locationNote;
+  });
+  document.querySelectorAll("[data-location-timings]").forEach((node) => {
+    node.textContent = siteSettings.timings;
+  });
+  document.querySelectorAll("[data-map-frame]").forEach((node) => {
+    node.src = getMapEmbedUrl();
+    node.title = `${siteSettings.locationName} map`;
   });
 }
 
