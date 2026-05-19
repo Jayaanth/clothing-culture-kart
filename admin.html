@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Admin portal for Clothing Culture Kart storefront edits.">
     <title>Admin Portal | Clothing Culture Kart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;700&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body class="admin-locked">
     <header class="site-header">
       <a class="brand-lockup" href="index.html" aria-label="Clothing Culture Kart home">
         <span class="brand-mark">CCK</span>
@@ -31,6 +32,20 @@
     </header>
 
     <main>
+      <section class="admin-login" aria-label="Admin login">
+        <form class="admin-login-card" data-admin-login>
+          <span class="section-kicker">Private Access</span>
+          <h1>Admin Login</h1>
+          <p class="section-copy">Enter your owner passcode to edit products, pictures, logo and store settings.</p>
+          <label class="admin-field">Passcode<input name="passcode" type="password" autocomplete="current-password" required></label>
+          <div class="admin-actions">
+            <button class="solid-button" type="submit">Unlock Admin</button>
+            <a class="ghost-button" href="index.html">Back to Site</a>
+          </div>
+          <p class="section-copy" data-login-error role="alert"></p>
+        </form>
+      </section>
+
       <section class="page-hero">
         <span class="eyebrow">Store control room</span>
         <h1>Admin Portal</h1>

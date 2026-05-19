@@ -11,6 +11,7 @@ const defaultSettings = {
   logoImage: ""
 };
 
+const adminPasscodeHash = "0d35af9b005ae6d4aaa43e701bf84fd1c2f45eabf2d87c0b87506c894b67b047";
 let adminProducts = JSON.parse(localStorage.getItem("cck-products") || "null") || defaultProducts;
 let adminSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem("cck-settings") || "null") || {}) };
 let pendingProductImage = "";
@@ -21,6 +22,34 @@ const productForm = document.querySelector("[data-product-form]");
 const productList = document.querySelector("[data-admin-products]");
 const productPreview = document.querySelector("[data-product-preview]");
 const logoPreview = document.querySelector("[data-logo-preview]");
+
+async function sha256(value) {
+  const bytes = new TextEncoder().encode(value);
+  const hash = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(hash)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function unlockAdmin() {
+  document.body.classList.remove("admin-locked");
+}
+
+if (sessionStorage.getItem("cck-admin-unlocked") === "true") {
+  unlockAdmin();
+}
+
+document.querySelector("[data-admin-login]").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const passcode = new FormData(event.currentTarget).get("passcode");
+  const error = document.querySelector("[data-login-error]");
+  if (await sha256(passcode) === adminPasscodeHash) {
+    sessionStorage.setItem("cck-admin-unlocked", "true");
+    unlockAdmin();
+    event.currentTarget.reset();
+    showToast("Admin unlocked");
+  } else {
+    error.textContent = "Wrong passcode.";
+  }
+});
 
 function slugify(value) {
   return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || `product-${Date.now()}`;
