@@ -20,14 +20,13 @@
       <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
       <nav class="main-nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
+        <a href="catalog.html">Catalog</a>
         <a href="contact.html">Contact</a>
         <a href="admin.html" aria-current="page">Admin</a>
       </nav>
       <div class="header-actions">
-        <a class="icon-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" aria-label="Open Instagram">IG</a>
-        <a class="cart-button" href="shop.html">View Site</a>
+        <a class="icon-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" data-instagram-link aria-label="Open Instagram">IG</a>
+        <a class="cart-button" href="catalog.html">View Catalog</a>
       </div>
     </header>
 
@@ -49,7 +48,7 @@
       <section class="page-hero">
         <span class="eyebrow">Store control room</span>
         <h1>Admin Portal</h1>
-        <p class="section-copy">Edit logo, brand copy, links, products, pricing, stock and images. Changes are saved in this browser and reflected across the storefront instantly.</p>
+        <p class="section-copy">Edit logo, brand copy, WhatsApp contact number, Instagram link, catalog products, pricing, stock, details and images. Changes are saved in this browser and reflected across the storefront instantly.</p>
       </section>
 
       <div class="admin-shell">
@@ -76,7 +75,7 @@
                 <label class="admin-field">Hero outline word<input name="heroOutline" required></label>
                 <label class="admin-field">Hero kicker<input name="heroKicker" required></label>
                 <label class="admin-field">Instagram URL<input name="instagram" type="url" required></label>
-                <label class="admin-field">WhatsApp URL<input name="whatsapp" type="url" required></label>
+                <label class="admin-field">WhatsApp contact number<input name="whatsappNumber" inputmode="tel" placeholder="Example: 919876543210"></label>
                 <label class="admin-field full">Upload logo image<input name="logoFile" type="file" accept="image/*"></label>
               </div>
               <div class="admin-actions">
@@ -112,6 +111,7 @@
                 <label class="admin-field">Stock<input name="stock" type="number" min="0" step="1" required></label>
                 <label class="admin-field">Tag<input name="tag" required></label>
                 <label class="admin-field">Sizes, comma separated<input name="sizes" required></label>
+                <label class="admin-field full">Product details<textarea name="description" rows="4" required></textarea></label>
                 <label class="admin-field full">Product image<input name="imageFile" type="file" accept="image/*"></label>
                 <label class="admin-field full">Or image path / URL<input name="img" required></label>
               </div>

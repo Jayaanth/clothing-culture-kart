@@ -1,16 +1,3 @@
-const defaultSettings = {
-  brandName: "Clothing Culture",
-  brandSmall: "Kart Streetwear",
-  brandMark: "CCK",
-  tagline: "Built by Engineers. Styled for Streets.",
-  instagram: "https://www.instagram.com/clothingculturecart/",
-  whatsapp: "https://wa.me/",
-  heroTitle: "Clothing",
-  heroOutline: "Culture",
-  heroKicker: "Mysuru Independent Streetwear",
-  logoImage: ""
-};
-
 const adminPasscodeHash = "0d35af9b005ae6d4aaa43e701bf84fd1c2f45eabf2d87c0b87506c894b67b047";
 let adminProducts = JSON.parse(localStorage.getItem("cck-products") || "null") || defaultProducts;
 let adminSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem("cck-settings") || "null") || {}) };
@@ -97,6 +84,7 @@ function fillProductForm(product = null) {
     stock: 5,
     tag: "New Drop",
     sizes: ["S", "M", "L", "XL"],
+    description: "Add product fit, fabric, color and drop details here.",
     img: "assets/product-mysuru-tee.svg"
   };
   productForm.elements.id.value = current.id;
@@ -106,6 +94,7 @@ function fillProductForm(product = null) {
   productForm.elements.stock.value = current.stock;
   productForm.elements.tag.value = current.tag;
   productForm.elements.sizes.value = current.sizes.join(", ");
+  productForm.elements.description.value = current.description || "";
   productForm.elements.img.value = current.img;
   pendingProductImage = "";
   renderProductPreview(current.img);
@@ -118,6 +107,7 @@ function renderProductList() {
       <div>
         <h3>${product.name}</h3>
         <div class="product-meta">${product.category} / ${currency.format(product.price)} / ${product.stock} left</div>
+        <p class="section-copy">${product.description || ""}</p>
       </div>
       <div class="admin-actions">
         <button class="ghost-button" type="button" data-edit-product="${product.id}">Edit</button>
@@ -144,7 +134,7 @@ brandForm.addEventListener("submit", (event) => {
     brandMark: data.get("brandMark").trim() || "CCK",
     tagline: data.get("tagline").trim(),
     instagram: data.get("instagram").trim(),
-    whatsapp: data.get("whatsapp").trim(),
+    whatsappNumber: cleanPhoneNumber(data.get("whatsappNumber")),
     heroTitle: data.get("heroTitle").trim(),
     heroOutline: data.get("heroOutline").trim(),
     heroKicker: data.get("heroKicker").trim(),
@@ -175,6 +165,7 @@ productForm.addEventListener("submit", (event) => {
     stock: Number(data.get("stock")),
     tag: data.get("tag").trim(),
     sizes: data.get("sizes").split(",").map((size) => size.trim()).filter(Boolean),
+    description: data.get("description").trim(),
     img: pendingProductImage || data.get("img").trim()
   };
   const existingIndex = adminProducts.findIndex((item) => item.id === product.id);

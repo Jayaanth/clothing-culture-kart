@@ -7,6 +7,7 @@ const defaultProducts = [
     sizes: ["S", "M", "L", "XL"],
     stock: 4,
     tag: "Limited Drop",
+    description: "Heavy oversized tee with local Mysuru street signal artwork.",
     img: "assets/product-mysuru-tee.svg"
   },
   {
@@ -17,6 +18,7 @@ const defaultProducts = [
     sizes: ["M", "L", "XL"],
     stock: 9,
     tag: "Best Seller",
+    description: "Graphic tee built around garage-culture typography and street attitude.",
     img: "assets/product-garage-tee.svg"
   },
   {
@@ -27,6 +29,7 @@ const defaultProducts = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     stock: 3,
     tag: "Only Few Left",
+    description: "Warm hoodie with engineer-built identity and limited stock energy.",
     img: "assets/product-hoodie.svg"
   },
   {
@@ -37,6 +40,7 @@ const defaultProducts = [
     sizes: ["Free"],
     stock: 12,
     tag: "New",
+    description: "Daily streetwear cap for completing a clean local fit.",
     img: "assets/product-cap.svg"
   },
   {
@@ -47,6 +51,7 @@ const defaultProducts = [
     sizes: ["S", "M", "L", "XL"],
     stock: 7,
     tag: "Drop 02",
+    description: "Burnt orange backprint tee with the core CCK tagline.",
     img: "assets/product-backprint.svg"
   },
   {
@@ -57,6 +62,7 @@ const defaultProducts = [
     sizes: ["M", "L", "XL", "XXL"],
     stock: 5,
     tag: "Heavy GSM",
+    description: "Matte black oversized tee for night rides, college fits and drop days.",
     img: "assets/product-night-tee.svg"
   },
   {
@@ -67,6 +73,7 @@ const defaultProducts = [
     sizes: ["Free"],
     stock: 6,
     tag: "COD Ready",
+    description: "Canvas tote for carrying everyday gear with Culture Kart branding.",
     img: "assets/product-tote.svg"
   },
   {
@@ -77,9 +84,23 @@ const defaultProducts = [
     sizes: ["M", "L", "XL"],
     stock: 2,
     tag: "Only Few Left",
+    description: "Deep maroon hoodie with underground drop identity.",
     img: "assets/product-maroon-hoodie.svg"
   }
 ];
+
+const defaultSettings = {
+  brandName: "Clothing Culture",
+  brandSmall: "Kart Streetwear",
+  brandMark: "CCK",
+  tagline: "Built by Engineers. Styled for Streets.",
+  instagram: "https://www.instagram.com/clothingculturecart/",
+  whatsappNumber: "",
+  heroTitle: "Clothing",
+  heroOutline: "Culture",
+  heroKicker: "Mysuru Independent Streetwear",
+  logoImage: ""
+};
 
 const currency = new Intl.NumberFormat("en-IN", {
   style: "currency",
@@ -88,56 +109,17 @@ const currency = new Intl.NumberFormat("en-IN", {
 });
 
 let products = JSON.parse(localStorage.getItem("cck-products") || "null") || defaultProducts;
-const siteSettings = JSON.parse(localStorage.getItem("cck-settings") || "null") || {};
-const cart = JSON.parse(localStorage.getItem("cck-cart") || "[]");
-const wishlist = new Set(JSON.parse(localStorage.getItem("cck-wishlist") || "[]"));
+const siteSettings = { ...defaultSettings, ...(JSON.parse(localStorage.getItem("cck-settings") || "null") || {}) };
 
-function applySiteSettings() {
-  const defaults = {
-    brandName: "Clothing Culture",
-    brandSmall: "Kart Streetwear",
-    brandMark: "CCK",
-    tagline: "Built by Engineers. Styled for Streets.",
-    instagram: "https://www.instagram.com/clothingculturecart/",
-    whatsapp: "https://wa.me/",
-    heroTitle: "Clothing",
-    heroOutline: "Culture",
-    heroKicker: "Mysuru Independent Streetwear"
-  };
-  const settings = { ...defaults, ...siteSettings };
-
-  document.querySelectorAll(".brand-mark").forEach((node) => {
-    if (settings.logoImage) {
-      node.innerHTML = `<img src="${settings.logoImage}" alt="${settings.brandMark} logo">`;
-      node.classList.add("has-logo-image");
-    } else {
-      node.textContent = settings.brandMark;
-      node.classList.remove("has-logo-image");
-    }
-  });
-  document.querySelectorAll(".brand-name").forEach((node) => {
-    node.innerHTML = `${settings.brandName} <small>${settings.brandSmall}</small>`;
-  });
-  document.querySelectorAll("[data-site-tagline]").forEach((node) => {
-    node.textContent = settings.tagline;
-  });
-  document.querySelectorAll("[data-hero-kicker]").forEach((node) => {
-    node.textContent = settings.heroKicker;
-  });
-  document.querySelectorAll("[data-hero-title]").forEach((node) => {
-    node.innerHTML = `${settings.heroTitle} <span>${settings.heroOutline}</span>`;
-  });
-  document.querySelectorAll('a[href*="instagram.com/clothingculturecart"]').forEach((node) => {
-    node.href = settings.instagram;
-  });
-  document.querySelectorAll('a[href="https://wa.me/"]').forEach((node) => {
-    node.href = settings.whatsapp;
-  });
+function cleanPhoneNumber(value) {
+  return String(value || "").replace(/[^\d]/g, "");
 }
 
-function saveState() {
-  localStorage.setItem("cck-cart", JSON.stringify(cart));
-  localStorage.setItem("cck-wishlist", JSON.stringify([...wishlist]));
+function getWhatsAppLink(product = null) {
+  const number = cleanPhoneNumber(siteSettings.whatsappNumber);
+  const productText = product ? `Hi CCK, I want to order/check availability for ${product.name}.` : "Hi CCK, I want to order from Clothing Culture Kart.";
+  const text = encodeURIComponent(productText);
+  return number ? `https://wa.me/${number}?text=${text}` : `https://wa.me/?text=${text}`;
 }
 
 function showToast(message) {
@@ -149,11 +131,42 @@ function showToast(message) {
   showToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 1900);
 }
 
+function applySiteSettings() {
+  document.querySelectorAll(".brand-mark").forEach((node) => {
+    if (siteSettings.logoImage) {
+      node.innerHTML = `<img src="${siteSettings.logoImage}" alt="${siteSettings.brandMark} logo">`;
+      node.classList.add("has-logo-image");
+    } else {
+      node.textContent = siteSettings.brandMark;
+      node.classList.remove("has-logo-image");
+    }
+  });
+  document.querySelectorAll(".brand-name").forEach((node) => {
+    node.innerHTML = `${siteSettings.brandName} <small>${siteSettings.brandSmall}</small>`;
+  });
+  document.querySelectorAll("[data-site-tagline]").forEach((node) => {
+    node.textContent = siteSettings.tagline;
+  });
+  document.querySelectorAll("[data-hero-kicker]").forEach((node) => {
+    node.textContent = siteSettings.heroKicker;
+  });
+  document.querySelectorAll("[data-hero-title]").forEach((node) => {
+    node.innerHTML = `${siteSettings.heroTitle} <span>${siteSettings.heroOutline}</span>`;
+  });
+  document.querySelectorAll("[data-instagram-link]").forEach((node) => {
+    node.href = siteSettings.instagram;
+  });
+  document.querySelectorAll("[data-whatsapp-link]").forEach((node) => {
+    node.href = getWhatsAppLink();
+  });
+  document.querySelectorAll("[data-whatsapp-number]").forEach((node) => {
+    node.textContent = siteSettings.whatsappNumber || "Add WhatsApp number in admin";
+  });
+}
+
 function createProductCard(product) {
-  const isLiked = wishlist.has(product.id);
   return `
     <article class="product-card" data-product-card data-category="${product.category}" data-price="${product.price}">
-      <button class="icon-button wishlist ${isLiked ? "is-active" : ""}" type="button" data-wishlist="${product.id}" aria-label="Add ${product.name} to wishlist">♡</button>
       <div class="product-media" data-zoom="${product.id}">
         <span class="badge">${product.tag}</span>
         <img src="${product.img}" alt="${product.name}">
@@ -164,16 +177,14 @@ function createProductCard(product) {
           <span>${product.category}</span>
           <strong>${currency.format(product.price)}</strong>
         </div>
+        <p class="catalog-description">${product.description || "Streetwear catalog piece from Clothing Culture Kart."}</p>
         <div class="product-meta">
           <span class="${product.stock <= 4 ? "stock-low" : ""}">${product.stock <= 4 ? "Only " : ""}${product.stock} left</span>
-          <span>COD available</span>
-        </div>
-        <div class="sizes" aria-label="Available sizes">
-          ${product.sizes.map((size) => `<span class="size-chip">${size}</span>`).join("")}
+          <span>Sizes: ${product.sizes.join(", ")}</span>
         </div>
         <div class="card-actions">
-          <button class="solid-button" type="button" data-add="${product.id}">Add to Cart</button>
-          <button class="ghost-button" type="button" data-buy="${product.id}">Quick Buy</button>
+          <a class="solid-button" href="${getWhatsAppLink(product)}" target="_blank" rel="noreferrer">Order on WhatsApp</a>
+          <a class="ghost-button" href="${siteSettings.instagram}" target="_blank" rel="noreferrer">DM Instagram</a>
         </div>
       </div>
     </article>
@@ -186,61 +197,6 @@ function renderProducts(targetSelector, list = products.slice(0, 4)) {
   target.innerHTML = list.filter(Boolean).map(createProductCard).join("");
 }
 
-function updateCart() {
-  document.querySelectorAll("[data-cart-count]").forEach((node) => {
-    node.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
-  });
-
-  const cartItems = document.querySelector("[data-cart-items]");
-  const cartTotal = document.querySelector("[data-cart-total]");
-  if (!cartItems || !cartTotal) return;
-
-  if (!cart.length) {
-    cartItems.innerHTML = `<p class="section-copy">Your cart is waiting for the next drop.</p>`;
-    cartTotal.textContent = currency.format(0);
-    return;
-  }
-
-  cartItems.innerHTML = cart.map((item) => {
-    const product = products.find((entry) => entry.id === item.id);
-    if (!product) return "";
-    return `
-      <div class="cart-item">
-        <img src="${product.img}" alt="${product.name}">
-        <div>
-          <strong>${product.name}</strong>
-          <div class="product-meta">${item.qty} x ${currency.format(product.price)}</div>
-        </div>
-        <button class="icon-button" type="button" data-remove="${product.id}" aria-label="Remove ${product.name}">×</button>
-      </div>
-    `;
-  }).join("");
-
-  const total = cart.reduce((sum, item) => {
-    const product = products.find((entry) => entry.id === item.id);
-    if (!product) return sum;
-    return sum + product.price * item.qty;
-  }, 0);
-  cartTotal.textContent = currency.format(total);
-}
-
-function addToCart(id, quiet = false) {
-  const entry = cart.find((item) => item.id === id);
-  if (entry) entry.qty += 1;
-  else cart.push({ id, qty: 1 });
-  saveState();
-  updateCart();
-  if (!quiet) showToast("Added to cart");
-}
-
-function openCart() {
-  document.querySelector("[data-cart-drawer]")?.classList.add("is-open");
-}
-
-function closeCart() {
-  document.querySelector("[data-cart-drawer]")?.classList.remove("is-open");
-}
-
 function openProductModal(id) {
   const product = products.find((entry) => entry.id === id);
   const modal = document.querySelector("[data-modal]");
@@ -251,12 +207,12 @@ function openProductModal(id) {
     <div>
       <span class="section-kicker">${product.category}</span>
       <h2 class="section-title" style="font-size: clamp(2rem, 6vw, 4rem);">${product.name}</h2>
-      <p class="section-copy">Heavy streetwear energy with local Mysuru attitude, built for limited drops and daily wear.</p>
-      <p><strong>${currency.format(product.price)}</strong> · <span class="${product.stock <= 4 ? "stock-low" : ""}">${product.stock} left</span></p>
+      <p class="section-copy">${product.description || "Streetwear catalog piece from Clothing Culture Kart."}</p>
+      <p><strong>${currency.format(product.price)}</strong> / <span class="${product.stock <= 4 ? "stock-low" : ""}">${product.stock} left</span></p>
       <div class="sizes">${product.sizes.map((size) => `<span class="size-chip">${size}</span>`).join("")}</div>
       <div class="button-row">
-        <button class="solid-button" type="button" data-add="${product.id}">Add to Cart</button>
-        <button class="ghost-button" type="button" data-buy="${product.id}">Quick Buy</button>
+        <a class="solid-button" href="${getWhatsAppLink(product)}" target="_blank" rel="noreferrer">Order on WhatsApp</a>
+        <a class="ghost-button" href="${siteSettings.instagram}" target="_blank" rel="noreferrer">DM Instagram</a>
       </div>
     </div>
   `;
@@ -268,24 +224,20 @@ function closeProductModal() {
 }
 
 function applyFilters() {
-  const grid = document.querySelector("[data-shop-grid]");
+  const grid = document.querySelector("[data-catalog-grid]");
   if (!grid) return;
 
   const category = document.querySelector("[data-category-filter] .is-active")?.dataset.value || "All";
-  const maxPrice = Number(document.querySelector("[data-price-filter]")?.value || 2000);
   const sort = document.querySelector("[data-sort]")?.value || "featured";
 
-  let filtered = products.filter((product) => {
-    const categoryMatch = category === "All" || product.category === category;
-    return categoryMatch && product.price <= maxPrice;
-  });
-
+  let filtered = products.filter((product) => category === "All" || product.category === category);
   if (sort === "low") filtered = filtered.sort((a, b) => a.price - b.price);
   if (sort === "high") filtered = filtered.sort((a, b) => b.price - a.price);
   if (sort === "stock") filtered = filtered.sort((a, b) => a.stock - b.stock);
 
   grid.innerHTML = filtered.map(createProductCard).join("");
-  document.querySelector("[data-result-count]").textContent = `${filtered.length} styles`;
+  const resultCount = document.querySelector("[data-result-count]");
+  if (resultCount) resultCount.textContent = `${filtered.length} catalog items`;
 }
 
 function updateCountdown() {
@@ -311,41 +263,13 @@ function updateCountdown() {
 }
 
 document.addEventListener("click", (event) => {
-  const target = event.target.closest("button, [data-zoom], .drawer-backdrop, .modal-backdrop");
+  const target = event.target.closest("button, [data-zoom], .modal-backdrop");
   if (!target) return;
 
   if (target.matches("[data-nav-toggle]")) {
     document.querySelector(".site-header")?.classList.toggle("nav-open");
   }
-  if (target.matches("[data-open-cart]")) openCart();
-  if (target.matches("[data-close-cart], .drawer-backdrop")) closeCart();
   if (target.matches("[data-close-modal], .modal-backdrop")) closeProductModal();
-
-  const addId = target.getAttribute("data-add");
-  if (addId) addToCart(addId);
-
-  const buyId = target.getAttribute("data-buy");
-  if (buyId) {
-    addToCart(buyId, true);
-    openCart();
-    showToast("Ready for checkout");
-  }
-
-  const removeId = target.getAttribute("data-remove");
-  if (removeId) {
-    const index = cart.findIndex((item) => item.id === removeId);
-    if (index >= 0) cart.splice(index, 1);
-    saveState();
-    updateCart();
-  }
-
-  const wishlistId = target.getAttribute("data-wishlist");
-  if (wishlistId) {
-    wishlist.has(wishlistId) ? wishlist.delete(wishlistId) : wishlist.add(wishlistId);
-    saveState();
-    target.classList.toggle("is-active");
-    showToast(wishlist.has(wishlistId) ? "Saved to wishlist" : "Removed from wishlist");
-  }
 
   const zoomId = target.getAttribute("data-zoom");
   if (zoomId) openProductModal(zoomId);
@@ -357,13 +281,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-document.addEventListener("input", (event) => {
-  if (event.target.matches("[data-price-filter]")) {
-    document.querySelector("[data-price-value]").textContent = currency.format(Number(event.target.value));
-    applyFilters();
-  }
-});
-
 document.addEventListener("change", (event) => {
   if (event.target.matches("[data-sort]")) applyFilters();
 });
@@ -371,16 +288,20 @@ document.addEventListener("change", (event) => {
 document.addEventListener("submit", (event) => {
   if (event.target.matches("[data-contact-form]")) {
     event.preventDefault();
-    showToast("Message drafted. WhatsApp is fastest for live orders.");
+    const data = new FormData(event.target);
+    const message = `Hi CCK, my name is ${data.get("name")}. ${data.get("message")}`;
+    const number = cleanPhoneNumber(siteSettings.whatsappNumber);
+    const url = number ? `https://wa.me/${number}?text=${encodeURIComponent(message)}` : getWhatsAppLink();
+    window.open(url, "_blank", "noopener,noreferrer");
     event.target.reset();
+    showToast("Opening WhatsApp");
   }
 });
 
 applySiteSettings();
 renderProducts("[data-featured-grid]", products.slice(0, 4));
-renderProducts("[data-best-grid]", [products[1], products[2], products[0], products[5]].filter(Boolean).length ? [products[1], products[2], products[0], products[5]].filter(Boolean) : products.slice(0, 4));
-renderProducts("[data-shop-grid]", products);
+renderProducts("[data-best-grid]", products.slice(0, 4));
+renderProducts("[data-catalog-grid]", products);
 applyFilters();
-updateCart();
 updateCountdown();
 setInterval(updateCountdown, 1000);

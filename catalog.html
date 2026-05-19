@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Catalog of Clothing Culture Kart streetwear drops and clothing items.">
+    <title>Catalog | Clothing Culture Kart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@500;700&family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-lockup" href="index.html"><span class="brand-mark">CCK</span><span class="brand-name">Clothing Culture <small>Kart Streetwear</small></span></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="catalog.html" aria-current="page">Catalog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="icon-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" data-instagram-link aria-label="Open Instagram">IG</a>
+        <a class="cart-button" href="https://wa.me/" target="_blank" rel="noreferrer" data-whatsapp-link>WhatsApp</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <span class="eyebrow">Product catalog</span>
+        <h1>Streetwear Drops</h1>
+        <p class="section-copy">Browse clothing images, details, prices, sizes and stock. Tap WhatsApp or Instagram on any product to order directly.</p>
+      </section>
+
+      <section class="section">
+        <div class="shop-layout">
+          <aside class="filter-panel" aria-label="Catalog filters">
+            <span class="section-kicker">Filter catalog</span>
+            <div class="filter-group">
+              <h3>Category</h3>
+              <div class="segmented" data-category-filter>
+                <button class="is-active" type="button" data-value="All">All</button>
+                <button type="button" data-value="Oversized Tees">Oversized</button>
+                <button type="button" data-value="Graphic Tees">Graphic</button>
+                <button type="button" data-value="Hoodies">Hoodies</button>
+                <button type="button" data-value="Streetwear Accessories">Accessories</button>
+              </div>
+            </div>
+            <div class="filter-group">
+              <h3>Sort</h3>
+              <label class="select-row">
+                Catalog order
+                <select data-sort>
+                  <option value="featured">Featured</option>
+                  <option value="low">Price: Low to High</option>
+                  <option value="high">Price: High to Low</option>
+                  <option value="stock">Only Few Left</option>
+                </select>
+              </label>
+            </div>
+            <div class="filter-group">
+              <h3>Order support</h3>
+              <p class="section-copy">WhatsApp: <strong data-whatsapp-number>Add WhatsApp number in admin</strong></p>
+              <a class="solid-button" href="https://wa.me/" target="_blank" rel="noreferrer" data-whatsapp-link>Order on WhatsApp</a>
+            </div>
+          </aside>
+
+          <div>
+            <div class="shop-toolbar">
+              <strong data-result-count>0 catalog items</strong>
+              <a class="ghost-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" data-instagram-link>DM Instagram</a>
+            </div>
+            <div class="product-grid" data-catalog-grid></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 Clothing Culture Kart.</p>
+      <div class="button-row">
+        <a class="ghost-button" href="https://wa.me/" target="_blank" rel="noreferrer" data-whatsapp-link>WhatsApp</a>
+        <a class="ghost-button" href="https://www.instagram.com/clothingculturecart/" target="_blank" rel="noreferrer" data-instagram-link>Instagram</a>
+      </div>
+    </footer>
+
+    <div class="modal" data-modal>
+      <div class="modal-backdrop"></div>
+      <section class="modal-panel">
+        <div class="modal-head"><h2>Product Details</h2><button class="icon-button" type="button" data-close-modal aria-label="Close preview">x</button></div>
+        <div class="modal-body" data-modal-body></div>
+      </section>
+    </div>
+    <div class="toast" data-toast></div>
+    <script src="script.js"></script>
+  </body>
+</html>
